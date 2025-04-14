@@ -1,0 +1,36 @@
+@model IEnumerable<ProductManagement.Models.Product>
+@{
+    ViewData["Title"] = "Product List";
+}
+
+<h1>Product List</h1>
+<p>Total Products: @ViewBag.ProductCount</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Availability</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Price.ToString("C")</td>
+                <td>
+                    @if (product.InStock)
+                    {
+                        <span style="color: green;">In Stock</span>
+                    }
+                    else
+                    {
+                        <span style="color: red;">Out of Stock</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
